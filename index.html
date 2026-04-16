@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lei Ohana｜東長崎のダイニング＆居酒屋</title>
+<meta name="description" content="西武池袋線・東長崎駅そば。しげる荘1Fの小さな隠れ家ダイニング＆居酒屋 Lei Ohana（レイオハナ）。フレンドリーなご夫婦が営む、手づくり料理とお酒の店。Google評価4.6。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Zen+Maru+Gothic:wght@300;400;500;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2C2420;
+    --warm: #6B5344;
+    --cream: #FAF6F1;
+    --paper: #F3EDE4;
+    --terracotta: #C4734F;
+    --terracotta-soft: #D4916F;
+    --olive: #7A8B5C;
+    --gold: #BFA265;
+    --gold-light: #E8D9B0;
+    --slate: #8A8680;
+    --white: #FFFFFF;
+    --shadow-sm: 0 1px 3px rgba(44,36,32,0.06);
+    --shadow-md: 0 4px 16px rgba(44,36,32,0.08);
+    --radius: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-weight: 400; color: var(--ink); background: var(--cream);
+    overflow-x: hidden; -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.1rem 2rem; display: flex; justify-content: space-between;
+    align-items: center; transition: all 0.5s ease;
+  }
+  nav.scrolled {
+    background: rgba(250,246,241,0.92); backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); box-shadow: var(--shadow-sm); padding: 0.8rem 2rem;
+  }
+  .nav-brand {
+    font-family: 'Caveat', cursive; font-size: 1.8rem; font-weight: 600;
+    color: var(--white); text-decoration: none; transition: color 0.5s;
+  }
+  nav.scrolled .nav-brand { color: var(--ink); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.5s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  nav.scrolled .nav-links a { color: var(--warm); }
+  nav.scrolled .nav-links a:hover { color: var(--terracotta); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 101; }
+  .hamburger span { width: 24px; height: 2px; background: var(--white); transition: all 0.3s; border-radius: 1px; }
+  nav.scrolled .hamburger span { background: var(--ink); }
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-links {
+      position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
+      background: var(--cream); flex-direction: column; padding: 5rem 2.5rem; gap: 1.8rem;
+      transition: right 0.4s ease; box-shadow: -4px 0 24px rgba(0,0,0,0.08);
+    }
+    .nav-links.open { right: 0; }
+    .nav-links a { color: var(--ink) !important; font-size: 1.05rem; }
+  }
+
+  /* HERO */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 2rem; overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(44,36,32,0.7) 0%, rgba(44,36,32,0.5) 40%, rgba(107,83,68,0.6) 70%, rgba(196,115,79,0.4) 100%),
+      radial-gradient(ellipse at 30% 80%, rgba(196,115,79,0.3), transparent 60%),
+      radial-gradient(ellipse at 70% 20%, rgba(122,139,92,0.15), transparent 60%),
+      linear-gradient(160deg, #3E2F26 0%, #5C4636 40%, #6B5344 70%, #8B6B52 100%);
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 80px;
+    background: var(--cream); clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.5; pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 600px; }
+  .hero-eyebrow {
+    font-size: 0.8rem; letter-spacing: 6px; color: var(--gold-light);
+    text-transform: uppercase; margin-bottom: 1.5rem; animation: fadeIn 1s ease 0.2s both;
+  }
+  .hero-logo {
+    font-family: 'Caveat', cursive; font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 600; color: var(--white); line-height: 1; animation: fadeIn 1s ease 0.4s both;
+  }
+  .hero-line {
+    width: 40px; height: 1px; background: var(--gold); margin: 2rem auto;
+    animation: fadeIn 1s ease 0.6s both;
+  }
+  .hero-desc {
+    font-weight: 300; font-size: clamp(0.9rem, 2vw, 1.05rem);
+    color: rgba(255,255,255,0.75); margin-top: 1.5rem; line-height: 2;
+    animation: fadeIn 1s ease 0.7s both;
+  }
+  .hero-rating {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.5rem; padding: 0.5rem 1.2rem;
+    background: rgba(255,255,255,0.1); border-radius: 50px;
+    color: var(--gold-light); font-size: 0.85rem; font-weight: 500;
+    animation: fadeIn 1s ease 0.9s both;
+    backdrop-filter: blur(4px);
+  }
+  .hero-rating .stars { color: #F4C542; letter-spacing: 2px; }
+  .hero-cta {
+    margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;
+    flex-wrap: wrap; animation: fadeIn 1s ease 1s both;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 2rem; border-radius: 50px; text-decoration: none;
+    font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 0.9rem;
+    transition: all 0.3s ease; cursor: pointer; border: none; letter-spacing: 0.5px;
+  }
+  .btn-primary { background: var(--terracotta); color: var(--white); }
+  .btn-primary:hover { background: var(--terracotta-soft); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(196,115,79,0.3); }
+  .btn-ghost { background: transparent; color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.3); }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.6); color: var(--white); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 960px; margin: 0 auto; }
+  .section-eyebrow { font-family: 'Caveat', cursive; font-size: 1.1rem; color: var(--terracotta); margin-bottom: 0.4rem; }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 600; color: var(--ink); margin-bottom: 0.8rem; line-height: 1.4;
+  }
+  .section-lead { font-weight: 300; font-size: 0.95rem; color: var(--warm); line-height: 2; max-width: 560px; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-visual {
+    position: relative; aspect-ratio: 4/5; border-radius: var(--radius); overflow: hidden; background: var(--paper);
+  }
+  .about-visual-inner {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: radial-gradient(ellipse at 50% 60%, rgba(196,115,79,0.12), transparent 70%), linear-gradient(170deg, var(--paper) 0%, #EDE5D8 100%);
+    gap: 0.8rem; padding: 2rem;
+  }
+  .about-icon-main { font-size: 3rem; }
+  .about-caption { font-family: 'Caveat', cursive; font-size: 1.1rem; color: var(--warm); text-align: center; line-height: 1.6; }
+  .about-detail { font-size: 0.8rem; color: var(--slate); text-align: center; line-height: 1.8; font-weight: 300; margin-top: 0.5rem; }
+  .about-visual::before {
+    content: ''; position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px;
+    border: 1px solid rgba(191,162,101,0.2); border-radius: 8px; pointer-events: none; z-index: 1;
+  }
+  @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } .about-visual { aspect-ratio: 3/2; } }
+
+  /* FEATURES */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+  .feature-card {
+    background: var(--white); padding: 2rem; border-radius: var(--radius);
+    box-shadow: var(--shadow-sm); transition: transform 0.3s, box-shadow 0.3s; text-align: center;
+  }
+  .feature-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .feature-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .feature-title { font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 0.6rem; }
+  .feature-text { font-weight: 300; font-size: 0.85rem; color: var(--slate); line-height: 1.8; }
+  @media (max-width: 768px) { .features { grid-template-columns: 1fr; } }
+
+  /* MENU */
+  .menu-section { background: var(--paper); }
+  .menu-grid {
+    margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .menu-card {
+    background: var(--white); border-radius: var(--radius); padding: 1.8rem;
+    box-shadow: var(--shadow-sm); transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .menu-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .menu-card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
+  .menu-card-icon { font-size: 1.6rem; }
+  .menu-card-title { font-weight: 700; font-size: 1.05rem; color: var(--ink); }
+  .menu-card-tag {
+    margin-left: auto; background: var(--terracotta); color: var(--white);
+    padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700;
+  }
+  .menu-card-items { list-style: none; }
+  .menu-card-items li {
+    padding: 0.4rem 0; font-size: 0.88rem; color: var(--warm); font-weight: 300;
+    border-bottom: 1px solid rgba(0,0,0,0.03); line-height: 1.6;
+  }
+  .menu-card-items li:last-child { border-bottom: none; }
+  .menu-note { text-align: center; margin-top: 2rem; font-size: 0.85rem; color: var(--slate); font-weight: 300; line-height: 1.8; }
+  @media (max-width: 768px) { .menu-grid { grid-template-columns: 1fr; } }
+
+  /* VOICE */
+  .voice-section { background: var(--cream); }
+  .voice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .voice-card {
+    background: var(--white); padding: 2rem; border-radius: var(--radius);
+    box-shadow: var(--shadow-sm); position: relative;
+  }
+  .voice-card::before {
+    content: '"'; font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; color: var(--gold-light); position: absolute; top: 10px; left: 16px; line-height: 1;
+  }
+  .voice-text {
+    font-size: 0.88rem; color: var(--warm); line-height: 1.9; font-weight: 300;
+    padding-left: 0.5rem; margin-top: 0.5rem;
+  }
+  .voice-source { font-size: 0.75rem; color: var(--slate); margin-top: 0.8rem; text-align: right; }
+  @media (max-width: 768px) { .voice-grid { grid-template-columns: 1fr; } }
+
+  /* INFO */
+  .info-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 3rem; }
+  .info-card { background: var(--white); padding: 2.5rem; border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+  .info-card h3 { font-family: 'Caveat', cursive; font-size: 1.3rem; color: var(--terracotta); margin-bottom: 1.5rem; }
+  .info-row { display: flex; padding: 0.75rem 0; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.9rem; }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { font-weight: 700; color: var(--ink); width: 90px; flex-shrink: 0; font-size: 0.85rem; }
+  .info-value { color: var(--warm); line-height: 1.6; font-weight: 300; }
+  .map-frame { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); height: 100%; min-height: 320px; }
+  .map-frame iframe { width: 100%; height: 100%; min-height: 320px; border: none; }
+  .phone-link { color: var(--terracotta); text-decoration: none; font-weight: 500; }
+  .phone-link:hover { text-decoration: underline; }
+  @media (max-width: 768px) { .info-wrapper { grid-template-columns: 1fr; } }
+
+  /* IG */
+  .ig-banner {
+    max-width: 700px; margin: 0 auto; text-align: center; padding: 3.5rem 2rem;
+    background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-sm);
+  }
+  .ig-handle { font-family: 'Caveat', cursive; font-size: 1.5rem; color: var(--terracotta); margin: 0.8rem 0 1rem; }
+  .ig-text { font-weight: 300; font-size: 0.9rem; color: var(--slate); margin-bottom: 1.5rem; line-height: 1.8; }
+  .btn-ig { background: var(--ink); color: var(--white); }
+  .btn-ig:hover { background: var(--warm); transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer { background: var(--ink); color: rgba(255,255,255,0.5); text-align: center; padding: 3rem 2rem; }
+  .footer-name { font-family: 'Caveat', cursive; font-size: 1.6rem; color: rgba(255,255,255,0.8); margin-bottom: 0.8rem; }
+  .footer-info { font-size: 0.8rem; line-height: 1.8; font-weight: 300; }
+  .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.2rem; }
+  .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-copy { font-size: 0.7rem; opacity: 0.4; margin-top: 1.5rem; }
+
+  .divider-line { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
+  .divider-line hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-light), transparent); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* PHOTO PLACEHOLDER */
+  .photo-placeholder {
+    background: var(--paper); border: 2px dashed rgba(191,162,101,0.3);
+    border-radius: var(--radius); display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 2rem;
+    min-height: 200px; text-align: center; gap: 0.5rem;
+  }
+  .photo-placeholder-icon { font-size: 2rem; opacity: 0.4; }
+  .photo-placeholder-text { font-size: 0.8rem; color: var(--slate); font-weight: 300; }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#" class="nav-brand">Lei Ohana</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">お店について</a></li>
+    <li><a href="#menu">メニュー</a></li>
+    <li><a href="#voice">お客様の声</a></li>
+    <li><a href="#info">アクセス</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">東長崎・しげる荘1F</p>
+    <h1 class="hero-logo">Lei Ohana</h1>
+    <div class="hero-line"></div>
+    <p class="hero-desc">
+      路地裏にそっと灯る、小さなダイニング＆居酒屋。<br>
+      気さくなご夫婦が営む、手づくり料理とお酒の店。<br>
+      ふらっと寄れる、ほっとできる場所。
+    </p>
+    <div class="hero-rating">
+      <span class="stars">★★★★★</span>
+      <span>4.6 / 5.0</span>
+      <span style="opacity:0.6">（Google）</span>
+    </div>
+    <div class="hero-cta">
+      <a href="tel:08033884197" class="btn btn-primary">予約・お問い合わせ</a>
+      <a href="#about" class="btn btn-ghost">お店を知る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid reveal">
+      <div>
+        <span class="section-eyebrow">About</span>
+        <h2 class="section-title">ふらっと寄れる、<br>いつもの隠れ家。</h2>
+        <p class="section-lead">
+          東長崎駅からすぐ。「しげる荘」の1階にある小さなお店です。
+          気さくで温かいご夫婦が迎えてくれます。
+        </p>
+        <p class="section-lead" style="margin-top:1rem;">
+          メニューはハワイアンテイストの料理を軸に、居酒屋らしいおつまみや日替わりメニューも充実。
+          仕事帰りのひとりごはんも、友人との語らいも、肩の力を抜いて楽しめるお店です。
+        </p>
+        <p class="section-lead" style="margin-top:1rem;">
+          「Ohana」はハワイの言葉で「家族」。<br>
+          家族のように、気軽にくつろいでいってください。
+        </p>
+      </div>
+      <div class="about-visual">
+        <div class="about-visual-inner">
+          <span class="about-icon-main">🏠</span>
+          <span class="about-caption">しげる荘1F<br>ご夫婦で営む小さな隠れ家</span>
+          <span class="about-detail">カウンター＆テーブル席<br>居心地の良い空間でゆったりと</span>
+        </div>
+      </div>
+    </div>
+    <div class="features reveal">
+      <div class="feature-card">
+        <span class="feature-icon">👫</span>
+        <h3 class="feature-title">気さくなご夫婦</h3>
+        <p class="feature-text">温かく迎えてくれるお二人の人柄も、このお店の大きな魅力です。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🍳</span>
+        <h3 class="feature-title">手づくりの料理</h3>
+        <p class="feature-text">新鮮な食材を使ったハワイアン＆居酒屋メニュー。日替わりも楽しみ。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🍹</span>
+        <h3 class="feature-title">お酒もいろいろ</h3>
+        <p class="feature-text">フルーツサワーやビールなど、料理に合うドリンクを揃えています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-line"><hr></div>
+
+<!-- MENU -->
+<section id="menu" class="menu-section">
+  <div class="container reveal">
+    <span class="section-eyebrow">Menu</span>
+    <h2 class="section-title">おすすめメニュー</h2>
+    <p class="section-lead">ハワイアンの風を感じる料理から、お酒がすすむ一品まで。</p>
+
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="menu-card-header">
+          <span class="menu-card-icon">🍗</span>
+          <span class="menu-card-title">人気メニュー</span>
+          <span class="menu-card-tag">おすすめ</span>
+        </div>
+        <ul class="menu-card-items">
+          <li>国産鶏の唐揚げ ─ 臭みなし、柔らかくてジューシー</li>
+          <li>ロミロミサーモン ─ ハワイの定番前菜</li>
+          <li>スモークポケ（マグロ＆サーモン）</li>
+          <li>ワンプレートごはん ─ ボリューム満点</li>
+        </ul>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-header">
+          <span class="menu-card-icon">🐟</span>
+          <span class="menu-card-title">お魚・前菜</span>
+        </div>
+        <ul class="menu-card-items">
+          <li>鯛のアクアパッツァ</li>
+          <li>新鮮サラダ</li>
+          <li>日替わり前菜いろいろ</li>
+        </ul>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-header">
+          <span class="menu-card-icon">🍖</span>
+          <span class="menu-card-title">おつまみ・一品</span>
+        </div>
+        <ul class="menu-card-items">
+          <li>日替わりおつまみ</li>
+          <li>居酒屋スタイルの一品料理</li>
+          <li>仕入れに応じた季節メニュー</li>
+        </ul>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-header">
+          <span class="menu-card-icon">🍺</span>
+          <span class="menu-card-title">ドリンク</span>
+        </div>
+        <ul class="menu-card-items">
+          <li>生ビール / ハワイアンビール</li>
+          <li>パインサワー ─ 果肉入り！</li>
+          <li>フルーツカクテル各種</li>
+          <li>ソフトドリンクもあります</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="menu-note">※ メニューは仕入れ状況により変わります。最新情報は <a href="https://www.instagram.com/lei._.ohana/" target="_blank" rel="noopener noreferrer" style="color:var(--terracotta);">Instagram</a> でご確認ください。</p>
+  </div>
+</section>
+
+<div class="divider-line"><hr></div>
+
+<!-- VOICE -->
+<section id="voice" class="voice-section">
+  <div class="container reveal">
+    <span class="section-eyebrow">Voice</span>
+    <h2 class="section-title">お客様の声</h2>
+    <p class="section-lead">Googleレビューより、いただいた感想をご紹介します。</p>
+
+    <div class="voice-grid">
+      <div class="voice-card">
+        <p class="voice-text">
+          フレンドリーなご夫婦が営むアットホームなお店。料理は美味しいし、雰囲気もリラックスできて、つい長居したくなります。
+        </p>
+        <p class="voice-source">─ Google レビューより</p>
+      </div>
+      <div class="voice-card">
+        <p class="voice-text">
+          唐揚げが本当に美味しい。国産鶏を使っていて、柔らかくてジューシー。他にもいろいろ頼みましたが、全部ハズレなし！
+        </p>
+        <p class="voice-source">─ Google レビューより</p>
+      </div>
+      <div class="voice-card">
+        <p class="voice-text">
+          新鮮なマグロとサーモンのスモークポケ、鯛のアクアパッツァ…種類も豊富で、どれも期待以上の味でした。
+        </p>
+        <p class="voice-source">─ Google レビューより</p>
+      </div>
+      <div class="voice-card">
+        <p class="voice-text">
+          メニューが豊富で、ハワイアン料理に加えて居酒屋スタイルの日替わりメニューもあるのが嬉しい。帰るときには自然と元気になれるお店。
+        </p>
+        <p class="voice-source">─ Google レビューより</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-line"><hr></div>
+
+<!-- INFO -->
+<section id="info">
+  <div class="container reveal">
+    <span class="section-eyebrow">Access & Info</span>
+    <h2 class="section-title">店舗情報</h2>
+
+    <div class="info-wrapper">
+      <div class="info-card">
+        <h3>Information</h3>
+        <div class="info-row"><span class="info-label">店名</span><span class="info-value">Lei Ohana（レイ オハナ）</span></div>
+        <div class="info-row"><span class="info-label">住所</span><span class="info-value">〒171-0051<br>東京都豊島区長崎4-26-4<br>しげる荘1F</span></div>
+        <div class="info-row"><span class="info-label">最寄駅</span><span class="info-value">西武池袋線 東長崎駅</span></div>
+        <div class="info-row"><span class="info-label">電話</span><span class="info-value"><a href="tel:08033884197" class="phone-link">080-3388-4197</a></span></div>
+        <div class="info-row"><span class="info-label">営業時間</span><span class="info-value">17:00〜23:00</span></div>
+        <div class="info-row"><span class="info-label">定休日</span><span class="info-value">日曜日</span></div>
+        <div class="info-row"><span class="info-label">予算目安</span><span class="info-value">¥3,000〜¥4,000</span></div>
+        <div class="info-row"><span class="info-label">Google</span><span class="info-value">★ 4.6 / 5.0</span></div>
+      </div>
+
+      <div class="map-frame">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1619!2d139.6847292!3d35.7306804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018ed34a80f19af%3A0x26228338b4a5e77c!2sLei%20OHANA%20-%20%E3%83%8F%E3%83%AF%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%80%E3%82%A4%E3%83%8B%E3%83%B3%E3%82%B0!5e0!3m2!1sja!2sjp!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram">
+  <div class="container">
+    <div class="ig-banner reveal">
+      <span class="section-eyebrow">Follow us</span>
+      <h2 class="section-title">日々のお知らせ</h2>
+      <p class="ig-handle">@lei._.ohana</p>
+      <p class="ig-text">本日のメニューやお知らせ、お店の様子を<br>Instagramで発信しています。</p>
+      <a href="https://www.instagram.com/lei._.ohana/" target="_blank" rel="noopener noreferrer" class="btn btn-ig">Instagramを見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Lei Ohana</div>
+  <p class="footer-info">
+    東京都豊島区長崎4-26-4 しげる荘1F<br>
+    TEL: 080-3388-4197 ｜ 営業: 17:00〜23:00 ｜ 定休日: 日曜日
+  </p>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/lei._.ohana/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://tabelog.com/tokyo/A1321/A132101/13286608/" target="_blank" rel="noopener noreferrer">食べログ</a>
+    <a href="https://www.google.com/maps/place/Lei+OHANA" target="_blank" rel="noopener noreferrer">Google Map</a>
+  </div>
+  <p class="footer-copy">&copy; 2026 Lei Ohana</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  });
+  function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
